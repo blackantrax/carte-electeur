@@ -26,6 +26,7 @@
     }
   ],
   "env": {
+    "APP_URL": "https://carte-electeur-blackantraxs-projects.vercel.app",
     "APP_NAME": "CARTE D'ELECTEURS",
     "APP_ENV": "production",
     "APP_DEBUG": "false",
