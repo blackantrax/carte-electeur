@@ -1,0 +1,1 @@
+import{o as e,c as s,w as t,a as o,u as r,i as n}from"./app-CmTt6JpI.js";const u={__name:"AuthenticationCardLogo",setup(i){return(c,a)=>(e(),s(r(n),{href:"/"},{default:t(()=>a[0]||(a[0]=[o("img",{src:"/images/logo.png",class:"size-32",alt:""},null,-1)])),_:1}))}};export{u as _};
