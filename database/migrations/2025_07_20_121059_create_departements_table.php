@@ -1,0 +1,37 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('departements', function (Blueprint $table) {
+            $table->string('code', 5)->primary(); // Format: REG-NN (ex: LT-01)
+            $table->string('nom');
+            $table->string('chef_lieu');
+            $table->string('region_code', 3);
+            $table->integer('population')->nullable();
+            $table->float('superficie')->nullable();
+            $table->timestamps();
+
+            $table->foreign('region_code')
+                  ->references('code')
+                  ->on('regions')
+                  ->onDelete('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('departements');
+    }
+};
