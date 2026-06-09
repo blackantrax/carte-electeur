@@ -21,7 +21,7 @@ jobs:
           coverage: none
 
       - name: Install Composer dependencies
-        run: composer install --no-dev --optimize-autoloader --ignore-platform-reqs --no-audit
+        run: composer install --no-dev --optimize-autoloader --ignore-platform-reqs --no-security-blocking
 
       - name: Setup Node.js 20
         uses: actions/setup-node@v4
