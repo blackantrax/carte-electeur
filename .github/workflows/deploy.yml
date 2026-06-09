@@ -35,8 +35,15 @@ jobs:
       - name: Build Vite assets
         run: npm run build
 
+      - name: Prepare clean deploy (sans .git pour eviter le blocage Vercel)
+        run: |
+          mkdir -p /tmp/vercel-deploy
+          rsync -a --exclude='.git' --exclude='node_modules' --exclude='.env' . /tmp/vercel-deploy/
+          cp -f .vercel/project.json /tmp/vercel-deploy/.vercel/project.json 2>/dev/null || true
+
       - name: Deploy to Vercel
         run: npx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --yes
+        working-directory: /tmp/vercel-deploy
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
