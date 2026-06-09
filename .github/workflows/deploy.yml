@@ -35,6 +35,18 @@ jobs:
       - name: Build Vite assets
         run: npm run build
 
+      - name: Run database migrations
+        run: php artisan migrate --force
+        env:
+          APP_KEY: ${{ secrets.APP_KEY }}
+          DB_CONNECTION: mysql
+          DB_HOST: bodfqn7lxwjbgroabdkh-mysql.services.clever-cloud.com
+          DB_PORT: "3306"
+          DB_DATABASE: bodfqn7lxwjbgroabdkh
+          DB_USERNAME: uhxr4kvdkp5n2ksh
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          APP_ENV: production
+
       - name: Prepare clean deploy (sans .git pour eviter le blocage Vercel)
         run: |
           mkdir -p /tmp/vercel-deploy
