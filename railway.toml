@@ -2,7 +2,7 @@
 builder = "nixpacks"
 
 [deploy]
-preDeployCommand = "php artisan db:wipe --force && php artisan migrate --force"
+preDeployCommand = "php artisan migrate --force"
 startCommand = "php artisan config:cache && php artisan view:cache && php -S 0.0.0.0:$PORT server.php"
 healthcheckPath = "/"
 healthcheckTimeout = 120
