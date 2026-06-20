@@ -11,24 +11,24 @@ return new class extends Migration {
             $table->id();
 
             // Informations personnelles
-            $table->string('nom');
-            $table->string('prenom');
-            $table->date('date_naissance');
-            $table->string('lieu_naissance');
-            $table->string('telephone', 20);
-            $table->string('email')->unique();
-            $table->enum('genre', ['M', 'F', 'Autre']);
+            $table->string('nom')->nullable();
+            $table->string('prenom')->nullable();
+            $table->date('date_naissance')->nullable();
+            $table->string('lieu_naissance')->nullable();
+            $table->string('telephone', 20)->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->enum('genre', ['M', 'F', 'Autre'])->nullable();
 
             // Identification
-            $table->enum('type_identification', ['CNI', 'PASSEPORT', 'ATTESTATION', 'AUTRE']);
-            $table->string('numero_identification');
+            $table->enum('type_identification', ['CNI', 'PASSEPORT', 'ATTESTATION', 'AUTRE'])->nullable();
+            $table->string('numero_identification')->nullable();
             $table->string('numero_elecam')->unique()->nullable();
 
             // Localisation
             $table->string('region_code', 3)->nullable();
-            $table->string('departement_code', 5);
-            $table->string('commune_code', 8);
-            $table->string('adresse_complete');
+            $table->string('departement_code', 5)->nullable();
+            $table->string('commune_code', 8)->nullable();
+            $table->string('adresse_complete')->nullable();
 
             // Bureau de vote
             $table->string('bureau_vote_id')->nullable();
@@ -37,12 +37,12 @@ return new class extends Migration {
             $table->enum('statut_professionnel', [
                 'ETUDIANT', 'FONCTIONNAIRE', 'ENTREPRENEUR',
                 'CHOMEUR', 'RETRAITE', 'AUTRE'
-            ]);
+            ])->nullable();
 
             // Données électorales
             $table->boolean('est_inscrit_liste')->default(false);
-            $table->integer('annee_inscription');
-            $table->string('centre_vote');
+            $table->integer('annee_inscription')->nullable();
+            $table->string('centre_vote')->nullable();
             $table->string('antenne_communale')->nullable();
 
             // Gestion administrative
